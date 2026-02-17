@@ -4,35 +4,32 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
 
-class MainViewModel(application: Application) : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    val allCourses: LiveData<List<Course>>
-    private val repository: CourseRepository
-    val searchResults: MutableLiveData<List<Course>>
+    val allQuestions: LiveData<List<TrivialQuestion>>
+    private val repository: TrivialQuestionRepository
+    val searchResults: MutableLiveData<List<TrivialQuestion>>
 
     init {
-        val courseDb = CourseRoomDatabase.getInstance(application)
-        val courseDao = courseDb.courseDao()
-        repository = CourseRepository(courseDao)
+        val questionDb = TrivialQuestionRoomDatabase.getInstance(application)
+        val dao = questionDb.TrivialQuestionDao()
+        repository = TrivialQuestionRepository(dao)
 
-        allCourses = repository.allCourses
+        allQuestions = repository.allQuestions
         searchResults = repository.searchResults
+
+        preloadQuestions()
     }
 
-    fun insertCourse(course: Course) {
-        repository.insertCourse(course)
+    private fun preloadQuestions() {
+        seedQuestions.forEach { question ->
+            repository.insertQuestion(question)
+        }
     }
 
-//    fun findCourse(name: String) {
-//        repository.findCourse(name)
-//    }
-
-    fun deleteCourse(id: Int) {
-        repository.deleteCourse(id)
-    }
-
-    fun smartSearch(courseName: String?, creditHour: String?, letterGrade: String?) {
-        repository.smartSearch(courseName, creditHour, letterGrade)
+    fun insertQuestion(question: TrivialQuestion) {
+        repository.insertQuestion(question)
     }
 }

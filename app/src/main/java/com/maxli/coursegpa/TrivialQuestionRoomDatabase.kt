@@ -6,24 +6,24 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 //calls course dao queries and funcs
-@Database(entities = [(Course::class)], version = 1)
-abstract class CourseRoomDatabase: RoomDatabase() {
+@Database(entities = [(TrivialQuestion::class)], version = 1)
+abstract class TrivialQuestionRoomDatabase: RoomDatabase() {
 
-    abstract fun courseDao(): CourseDao
+    abstract fun TrivialQuestionDao(): TrivialQuestionDao
 
     companion object {
 
-        private var INSTANCE: CourseRoomDatabase? = null
+        private var INSTANCE: TrivialQuestionRoomDatabase? = null
 
-        fun getInstance(context: Context): CourseRoomDatabase {
+        fun getInstance(context: Context): TrivialQuestionRoomDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        CourseRoomDatabase::class.java,
-                        "course_database"
+                        TrivialQuestionRoomDatabase::class.java,
+                        "question_database"
                     ).fallbackToDestructiveMigration()
                         .build()
 

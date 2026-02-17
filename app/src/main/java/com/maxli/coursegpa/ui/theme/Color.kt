@@ -1,4 +1,4 @@
-package com.maxli.coursegpa.ui.theme
+package com.maxli.coursegpa
 
 import androidx.compose.ui.graphics.Color
 

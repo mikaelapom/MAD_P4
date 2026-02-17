@@ -1,4 +1,4 @@
-package com.maxli.coursegpa.ui.theme
+package com.maxli.coursegpa
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
