@@ -3,7 +3,7 @@ package com.maxli.coursegpa
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +24,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,7 +40,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.compose.runtime.livedata.observeAsState
-import com.maxli.coursegpa.MyApplicationTheme
 
 
 val TimesNewRoman = FontFamily(
@@ -129,13 +127,14 @@ fun TriviaScreen(
 
 @Composable
 fun AnswerButtons(question: TrivialQuestion, onAnswered: () -> Unit) {
-    AnswerRow("A", question.choiceA, onAnswered)
+    var originalList = question.getShuffledAnswers()
+    AnswerRow("A", originalList[0], onAnswered)
     Spacer(modifier = Modifier.height(25.dp))
-    AnswerRow("B", question.choiceB, onAnswered)
+    AnswerRow("B", originalList[1], onAnswered)
     Spacer(modifier = Modifier.height(25.dp))
-    AnswerRow("C", question.choiceC, onAnswered)
+    AnswerRow("C", originalList[2], onAnswered)
     Spacer(modifier = Modifier.height(25.dp))
-    AnswerRow("D", question.choiceD, onAnswered)
+    AnswerRow("D", originalList[3], onAnswered)
 }
 
 @Composable

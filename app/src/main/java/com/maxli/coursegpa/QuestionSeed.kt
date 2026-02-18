@@ -2,28 +2,25 @@ package com.maxli.coursegpa
 
 val seedQuestions = listOf(
     TrivialQuestion(
-        "When did Smith College start?",
+        "When was Smith College Founded?",
         "1941",
-        "1871",
-        "1854",
         "1920",
-        "B"
+        "1854",
+        "1871",
     ),
     TrivialQuestion(
         "Smith College was the first historically women's college to offer what undergraduate degree?",
-        "Engineering",
+        "English",
         "Criminology",
         "Journalism",
-        "English",
-        "A"
+        "Engineering",
     ),
     TrivialQuestion(
         "How many gardens & outdoor spaces does Smith have on it's grounds?",
         "3",
         "10",
-        "15",
         "9",
-        "C"
+        "15",
     ),
     TrivialQuestion(
         "Which of the following First Ladies attended Smith College?",
@@ -31,55 +28,49 @@ val seedQuestions = listOf(
         "Hillary Clinton",
         "Jill Biden",
         "Jackie Kennedy",
-        "D"
+
     ),
     TrivialQuestion(
         "How many gardens & outdoor spaces does Smith have on it's grounds?",
         "3",
         "10",
-        "15",
         "9",
-        "C"
+        "15",
     ),
     TrivialQuestion(
         "How many gardens & outdoor spaces does Smith have on it's grounds?",
         "3",
         "10",
-        "15",
         "9",
-        "C"
+        "15",
     ),
     TrivialQuestion(
         "How many gardens & outdoor spaces does Smith have on it's grounds?",
         "3",
         "10",
-        "15",
         "9",
-        "C"
+        "15",
     ),
     TrivialQuestion(
         "How many gardens & outdoor spaces does Smith have on it's grounds?",
         "3",
         "10",
-        "15",
         "9",
-        "C"
+        "15",
     ),
     TrivialQuestion(
         "How many gardens & outdoor spaces does Smith have on it's grounds?",
         "3",
         "10",
-        "15",
         "9",
-        "C"
+        "15",
     ),
     TrivialQuestion(
         "How many gardens & outdoor spaces does Smith have on it's grounds?",
         "3",
         "10",
-        "15",
         "9",
-        "C"
+        "15",
     ),
 
 )

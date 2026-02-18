@@ -2,6 +2,7 @@ package com.maxli.coursegpa
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 //used as db table for each course
@@ -15,29 +16,28 @@ class TrivialQuestion {
     @ColumnInfo(name = "questionName")
     var questionName: String = ""
 
-    @ColumnInfo(name = "choiceA")
-    var choiceA: String = ""
+    @ColumnInfo(name = "wrong1")
+    var wrong1: String = ""
 
-    @ColumnInfo(name = "choiceB")
-    var choiceB: String = ""
+    @ColumnInfo(name = "wrong2")
+    var wrong2: String = ""
 
-    @ColumnInfo(name = "choiceC")
-    var choiceC: String = ""
+    @ColumnInfo(name = "wrong3")
+    var wrong3: String = ""
 
-    @ColumnInfo(name = "choiceD")
-    var choiceD: String = ""
+    @ColumnInfo(name = "correct")
+    var correct: String = ""
 
-    @ColumnInfo(name = "correctChoice")
-    var correctChoice: String = ""
+    fun getShuffledAnswers(): List<String> {
+        return listOf(wrong1, wrong2, wrong3, correct).shuffled()
+    }
 
     constructor() {}
-
-    constructor(questionName: String, choiceA: String, choiceB: String, choiceC: String, choiceD: String, correctChoice: String) {
+    constructor(questionName: String, wrong1: String, wrong2: String, wrong3: String, correct: String) {
         this.questionName = questionName
-        this.choiceA = choiceA
-        this.choiceB = choiceB
-        this.choiceC = choiceC
-        this.choiceD = choiceD
-        this.correctChoice = correctChoice
+        this.wrong1 = wrong1
+        this.wrong2 = wrong2
+        this.wrong3 = wrong3
+        this.correct = correct
     }
 }

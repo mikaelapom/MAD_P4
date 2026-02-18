@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 //calls course dao queries and funcs
-@Database(entities = [(TrivialQuestion::class)], version = 1)
+@Database(entities = [(TrivialQuestion::class)], version = 2)
 abstract class TrivialQuestionRoomDatabase: RoomDatabase() {
 
     abstract fun TrivialQuestionDao(): TrivialQuestionDao
