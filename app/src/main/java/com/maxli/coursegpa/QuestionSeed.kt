@@ -66,7 +66,7 @@ val seedQuestions = listOf(
         "1898",
     ),
     TrivialQuestion(
-        "How many gardens & outdoor spaces does Smith have on it's grounds?",
+        "What is the Smith College mascot?",
         "The Librarian",
         "The Smith Pioneers",
         "The Minutewomen",
