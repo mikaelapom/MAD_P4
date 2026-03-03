@@ -1,5 +1,4 @@
-package com.maxli.coursegpa
-
+package com.mikaelap.myapplication
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -9,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface TrivialQuestionDao {
 
-    //to do: add error message if they are missing an input 
+    //to do: add error message if they are missing an input
     @Insert
     fun insertQuestion(question: TrivialQuestion)
 

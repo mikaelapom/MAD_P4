@@ -1,4 +1,4 @@
-package com.maxli.coursegpa
+package com.mikaelap.myapplication
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,4 +1,4 @@
-package com.maxli.coursegpa
+package com.mikaelap.myapplication
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.maxli.coursegpa
+package com.mikaelap.myapplication
 
 val seedQuestions = listOf(
     TrivialQuestion(
@@ -29,7 +29,7 @@ val seedQuestions = listOf(
         "Jill Biden",
         "Jackie Kennedy",
 
-    ),
+        ),
     TrivialQuestion(
         "In what state is Smith College located?",
         "Maryland",
@@ -73,4 +73,4 @@ val seedQuestions = listOf(
         "The Smith Bears",
     ),
 
-)
+    )

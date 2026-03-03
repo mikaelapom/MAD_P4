@@ -1,10 +1,9 @@
-package com.maxli.coursegpa
+package com.mikaelap.myapplication
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,9 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,7 +40,11 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.compose.runtime.livedata.observeAsState
-
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontStyle
+import com.mikaelap.myapplication.MyApplicationTheme
+import kotlin.collections.get
+import kotlin.times
 
 val TimesNewRoman = FontFamily(
     Font(R.font.times, FontWeight.Normal),
@@ -53,7 +54,7 @@ val TimesNewRoman = FontFamily(
 )
 
 
-//val answered = MutableList(10) {false}
+//val answered = MutableList(11) {false}
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -195,7 +196,7 @@ fun TriviaScreen(
                 if (questionIndex > 0) questionIndex--
             },
             onNext = {
-                if (questionIndex < questions.size - 1) questionIndex++
+                if (questionIndex < 9) questionIndex++
             },
             onReset = {
                 questionIndex = 0
@@ -272,22 +273,22 @@ fun AnswerRow(label: String,
             },
             colors = ButtonDefaults.buttonColors(
                 containerColor = if (answered[questionIndex] && answerIndex[listIndex] == question.correct) Color.Green//Color(0xFF97CDEC),
-                        else if (answered[questionIndex] && answerIndex[listIndex] != question.correct) Color.Red
-                        else
-                            Color(0xFF97CDEC),
+                else if (answered[questionIndex] && answerIndex[listIndex] != question.correct) Color.Red
+                else
+                    Color(0xFF97CDEC),
                 contentColor = Color(0xFF1A2C57)
 
             ),
             shape = CircleShape,
             modifier = Modifier.size(50.dp)
-            ) {
+        ) {
             Text(label,
                 textAlign = TextAlign.Center,
                 style = TextStyle(
                     fontSize = 25.sp,
                     color = Color(0xFF1A2C57)
                 )
-                )
+            )
         }
         Spacer(modifier = Modifier.width(20.dp))
         Text(text,
