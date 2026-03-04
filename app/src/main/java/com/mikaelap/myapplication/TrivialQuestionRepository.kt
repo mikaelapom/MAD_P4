@@ -1,28 +1,30 @@
-package com.maxli.coursegpa
+package com.mikaelap.myapplication
 
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 
-class CourseRepository(private val courseDao: CourseDao) {
+class TrivialQuestionRepository(private val TrivialQuestionDao: TrivialQuestionDao) {
 
-    val allCourses: LiveData<List<Course>> = courseDao.getAllCourses()
-    val searchResults = MutableLiveData<List<Course>>()
+    val allQuestions: LiveData<List<TrivialQuestion>> = TrivialQuestionDao.getAllQuestions()
+    val searchResults = MutableLiveData<List<TrivialQuestion>>()
 
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-    fun insertCourse(newcourse: Course) {
+    fun insertQuestion(newquestion: TrivialQuestion) {
         coroutineScope.launch(Dispatchers.IO) {
-            courseDao.insertCourse(newcourse)
+            TrivialQuestionDao.insertQuestion(newquestion)
         }
     }
 
+    /*
     fun deleteCourse(id: Int) {
         coroutineScope.launch(Dispatchers.IO) {
-            courseDao.deleteCourse(id)
+            trivialQuestionDao.deleteQuestion(id)
         }
     }
+
 
     fun smartSearch(courseName: String?, creditHour: String?, letterGrade: String?) {
         coroutineScope.launch(Dispatchers.Main) {
@@ -36,11 +38,9 @@ class CourseRepository(private val courseDao: CourseDao) {
         }
     }
 
-    private fun asyncFindByName(name: String): Deferred<List<Course>> =
-        coroutineScope.async(Dispatchers.IO) { courseDao.findCourseByName(name) }
+     */
 
-    private fun asyncFindByCreditHour(creditHour: Int): Deferred<List<Course>> =
-        coroutineScope.async(Dispatchers.IO) { courseDao.findCourseByCreditHour(creditHour) }
+    private fun asyncFindByName(name: String): Deferred<List<TrivialQuestion>> =
+        coroutineScope.async(Dispatchers.IO) { TrivialQuestionDao.findQuestionByName(name) }
 
-    private fun asyncFindByLetterGrade(letterGrade: String): Deferred<List<Course>> =
-        coroutineScope.async(Dispatchers.IO) { courseDao.findCourseByLetterGrade(letterGrade) } }
+}

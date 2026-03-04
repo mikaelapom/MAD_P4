@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.maxli.coursegpa"
+    namespace = "com.mikaelap.myapplication"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.maxli.coursegpa"
+        applicationId = "com.mikaelap.myapplication"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
