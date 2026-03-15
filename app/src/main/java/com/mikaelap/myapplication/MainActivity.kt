@@ -170,7 +170,7 @@ fun TriviaScreen(
 
         QuestionBox(current, questionIndex)
         Spacer(modifier = Modifier.height(8.dp))
-        Score(grade)
+        Score(questionsCorrect, grade)
         AnswerButtons(
             current,
             questionIndex = questionIndex,
@@ -420,7 +420,7 @@ fun BackForwardReset(
 
 @SuppressLint("DefaultLocale")
 @Composable
-fun Score(grade: Double) {
+fun Score(questionsCorrect: Double, grade: Double) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -429,7 +429,7 @@ fun Score(grade: Double) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = "Grade:  ${String.format("%.2f",grade*100)}%",
+            text = "Grade:  ${questionsCorrect.toInt()}/10",
             fontFamily = TimesNewRoman,
             style = TextStyle(
                 fontSize = 25.sp,
