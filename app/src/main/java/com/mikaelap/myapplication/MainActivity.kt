@@ -147,14 +147,14 @@ fun FameScreen(modifier: Modifier = Modifier) {
     }
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        modifier = modifier.fillMaxSize()
     ) {
+        TopBanner()
+        FameBanner()
 
         Row {
             Text(
-                text = "Joe Biden",
+                text = "National Ranking & Academics",
                 fontFamily = TimesNewRoman,
                 fontSize = 18.sp
             )
@@ -170,7 +170,7 @@ fun FameScreen(modifier: Modifier = Modifier) {
 
         Row {
             Text(
-                text = "Rich Miner",
+                text = "Sustainability",
                 fontFamily = TimesNewRoman,
                 fontSize = 18.sp
             )
@@ -181,6 +181,72 @@ fun FameScreen(modifier: Modifier = Modifier) {
                 Text("Learn More...")
             }
         }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Row {
+            Text(
+                text = "Athletics",
+                fontFamily = TimesNewRoman,
+                fontSize = 18.sp
+            )
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            Button(onClick = { showDialog = true }) {
+                Text("Learn More...")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Row {
+            Text(
+                text = "Sylvia Plath",
+                fontFamily = TimesNewRoman,
+                fontSize = 18.sp
+            )
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            Button(onClick = { showDialog = true }) {
+                Text("Learn More...")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Row {
+            Text(
+                text = "Nancy Reagan",
+                fontFamily = TimesNewRoman,
+                fontSize = 18.sp
+            )
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            Button(onClick = { showDialog = true }) {
+                Text("Learn More...")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Row {
+            Text(
+                text = "Julia Child",
+                fontFamily = TimesNewRoman,
+                fontSize = 18.sp
+            )
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            Button(onClick = { showDialog = true }) {
+                Text("Learn More...")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
     }
 }
 
@@ -262,10 +328,10 @@ fun TriviaScreen(
 fun CustomDialog(onDismissRequest: () -> Unit) {
     AlertDialog(
         onDismissRequest = { onDismissRequest() },
-        title = { Text(text = "Rich Miner") },
+        title = { Text(text = "National Ranking & Academics") },
         text = {
             Column {
-                Text("Rich Miner (born 1964) is an investment partner on the GV team.[1] Miner joined the GV team in March, 2009 and is based out of Cambridge, MA. Before joining GV, Miner was a co-founder of Android, Inc., origin of the Android mobile operating system and was an executive on the Android team after its acquisition by Google.[2] Miner also co-founded Wildfire Communications,[3] a voice communications startup that was sold to Orange in April 2000.[4] He has a doctorate in computer science from the University of Massachusetts Lowell.[5] The Richard A. Miner School of Computer & Information Sciences at UMass Lowell was named after Miner in 2022.[6]")
+                Text("Smith College is ranked #13 in National Liberal Arts Colleges and #10 in Best Value Schools. Of Forbes' America's Top College's ranking which accounts for 500 military academies, national universities, and liberal arts colleges, Smith rests at an impressive 135th place. Academics are taken very seriously at Smith, with an emphasis on research opportunities, experiential learning, and a vast selection of majors. The Ada Comstock Scholars Program also encourages students of nontraditional college ages to complete their unfinished degrees. Smith was also the first historically Women's college to offer an undergraduate degree in Engineering.")
                 Image(painter = painterResource(id = R.drawable.techcrunch), contentDescription = "Your Image Description")
             }
         },
@@ -383,6 +449,27 @@ fun SecondBanner() {
     ) {
         Text(
             text = "Trivia Questionnaire",
+            style = TextStyle(
+                fontFamily = TimesNewRoman,
+                fontSize = 18.sp,
+                color = Color(0xFF1A2C57)
+            )
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FameBanner() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(30.dp)
+            .background(Color(0xFFFBE475)),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Fame & Achievements",
             style = TextStyle(
                 fontFamily = TimesNewRoman,
                 fontSize = 18.sp,
