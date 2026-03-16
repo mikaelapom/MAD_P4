@@ -44,6 +44,15 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontStyle
 import com.mikaelap.myapplication.MyApplicationTheme
 import kotlin.collections.get
+import androidx.compose.material3.AlertDialog
+
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 
 val TimesNewRoman = FontFamily(
     Font(R.font.times, FontWeight.Normal),
@@ -72,7 +81,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(viewModel: MainViewModel) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
-    val tabs = listOf("Trivia", "Acad", "Fame")
+    val tabs = listOf("Trivia", "Acad", "Fame") //list out each tab
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -130,18 +139,48 @@ fun AcadScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun FameScreen(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+
+    var showDialog by remember { mutableStateOf(false) }
+
+    if (showDialog) {
+        CustomDialog(onDismissRequest = { showDialog = false })
+    }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
-        Text(
-            text = "Fame Screen",
-            style = TextStyle(
+
+        Row {
+            Text(
+                text = "Joe Biden",
                 fontFamily = TimesNewRoman,
-                fontSize = 24.sp,
-                color = Color(0xFF1A2C57)
+                fontSize = 18.sp
             )
-        )
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            Button(onClick = { showDialog = true }) {
+                Text("Learn More...")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Row {
+            Text(
+                text = "Rich Miner",
+                fontFamily = TimesNewRoman,
+                fontSize = 18.sp
+            )
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            Button(onClick = { showDialog = true }) {
+                Text("Learn More...")
+            }
+        }
     }
 }
 
@@ -216,6 +255,28 @@ fun TriviaScreen(
         )
         Spacer(modifier = Modifier.height(8.dp))
     }
+}
+
+//function from alert dialogue burner code
+@Composable
+fun CustomDialog(onDismissRequest: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = { onDismissRequest() },
+        title = { Text(text = "Rich Miner") },
+        text = {
+            Column {
+                Text("Rich Miner (born 1964) is an investment partner on the GV team.[1] Miner joined the GV team in March, 2009 and is based out of Cambridge, MA. Before joining GV, Miner was a co-founder of Android, Inc., origin of the Android mobile operating system and was an executive on the Android team after its acquisition by Google.[2] Miner also co-founded Wildfire Communications,[3] a voice communications startup that was sold to Orange in April 2000.[4] He has a doctorate in computer science from the University of Massachusetts Lowell.[5] The Richard A. Miner School of Computer & Information Sciences at UMass Lowell was named after Miner in 2022.[6]")
+                Image(painter = painterResource(id = R.drawable.techcrunch), contentDescription = "Your Image Description")
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = { onDismissRequest() }
+            ) {
+                Text("Cancel")
+            }
+        }
+    )
 }
 
 @Composable
