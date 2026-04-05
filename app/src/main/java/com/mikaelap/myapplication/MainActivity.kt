@@ -46,6 +46,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.material3.DropdownMenu
 
@@ -154,6 +155,7 @@ fun EventScreen(modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxSize()) {
         TopBanner()
         EventBanner()
+        ScrollBanner()
 
         LazyColumn(
             modifier = modifier
@@ -174,65 +176,100 @@ fun EventScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun EventTab(events: List<schoolEvent>, slotNumber: Int) {
-    val boxHeight = 220.dp //48dp for the tabs subtracted from
-    var isExpanded by remember { mutableStateOf(false) }         // screen height (variable)/6 to get six events per screen
+fun ScrollBanner() {
     Box(
         modifier = Modifier
-            .height(boxHeight)
             .fillMaxWidth()
-            .clickable { isExpanded = !isExpanded }
-            .padding(8.dp)
+            .height(35.dp)
+            .background(Color(0xFF1A2C57)),
+        contentAlignment = Alignment.Center
     ) {
         Text(
-            text = events[slotNumber].title,
-            color = Color(0xAFFFFFFF),
-            fontFamily = TimesNewRoman,
-            fontSize = 20.sp,
-            modifier = Modifier.align(Alignment.TopStart)
+            text = "Take a scroll through this month's events ↓",
+            style = TextStyle(
+                fontFamily = TimesNewRoman,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+            )
         )
-        Text(
-            text = events[slotNumber].date,
-            color = Color(0xAFFFFFFF),
-            fontFamily = TimesNewRoman,
-            fontSize = 20.sp,
-            modifier = Modifier.align(Alignment.TopEnd)
-        )
+    }
+}
+
+@Composable
+fun EventTab(events: List<schoolEvent>, slotNumber: Int) {
+    var isExpanded by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+            .background(Color(0xFF1A2C57))
+            .border(1.dp, Color(0xFFFBE475))
+            .clickable { isExpanded = !isExpanded }
+            .padding(12.dp)
+    ) {
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = events[slotNumber].title,
+                color = Color(0xAFFFFFFF),
+                fontFamily = TimesNewRoman,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .weight(1f),
+                maxLines = 2,
+                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+            )
+            Text(
+                text = events[slotNumber].date,
+                color = Color(0xCCFFFFFF),
+                fontFamily = TimesNewRoman,
+                fontSize = 14.sp
+            )
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
 
         Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 painter = painterResource(id = events[slotNumber].imageRes),
                 contentDescription = null,
-                modifier = Modifier.height(boxHeight * 0.5f),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(120.dp),
                 contentScale = ContentScale.Fit
             )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 text = events[slotNumber].shortDescription,
                 color = Color(0xAFFFFFFF),
                 fontFamily = TimesNewRoman,
                 fontSize = 16.sp,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                textDecoration = TextDecoration.Underline
             )
         }
 
-        DropdownMenu(
-            expanded = isExpanded,
-            onDismissRequest = {isExpanded = false},
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = Color(0xFF1A2C57))
-        ) {
+        if (isExpanded) {
+            Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 text = events[slotNumber].longDescription,
                 color = Color(0xAFFFFFFF),
                 fontFamily = TimesNewRoman,
-                fontSize = 18.sp,
+                fontSize = 16.sp,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(16.dp).fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }
