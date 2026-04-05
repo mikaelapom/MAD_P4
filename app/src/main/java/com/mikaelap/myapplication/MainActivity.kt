@@ -65,7 +65,8 @@ data class schoolEvent(
     val title: String,
     val shortDescription: String,
     val longDescription: String,
-    val date: String
+    val date: String,
+    val imageRes: Int
 )
 
 class MainActivity : ComponentActivity() {
@@ -87,7 +88,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(viewModel: MainViewModel) {
-    var selectedTabIndex by remember { mutableIntStateOf(2) }
+    var selectedTabIndex by remember { mutableIntStateOf(3) }
     val tabs = listOf("Trivia", "Acad", "Fame", "Events") //list out each tab
 
     Scaffold(
@@ -150,64 +151,80 @@ fun AcadScreen(modifier: Modifier = Modifier) {
 @Composable
 fun EventScreen(modifier: Modifier = Modifier) {
     val eventsList = mutableListOf<schoolEvent>(testEvent1, testEvent2, testEvent3, testEvent4, testEvent5, testEvent6, testEvent7)
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .background(color = Color(0xFF1A2C57))
-    ) {
-        item {
-            EventTab(eventsList, 0)
-            EventTab(eventsList, 1)
-            EventTab(eventsList, 2)
-            EventTab(eventsList, 3)
-            EventTab(eventsList, 4)
-            EventTab(eventsList, 5)
-            EventTab(eventsList, 6)
+    Column(modifier = modifier.fillMaxSize()) {
+        TopBanner()
+        EventBanner()
+
+        LazyColumn(
+            modifier = modifier
+                .fillMaxSize()
+                .background(color = Color(0xFF1A2C57))
+        ) {
+            item {
+                EventTab(eventsList, 0)
+                EventTab(eventsList, 1)
+                EventTab(eventsList, 2)
+                EventTab(eventsList, 3)
+                EventTab(eventsList, 4)
+                EventTab(eventsList, 5)
+                EventTab(eventsList, 6)
+            }
         }
     }
 }
 
 @Composable
 fun EventTab(events: List<schoolEvent>, slotNumber: Int) {
-    val boxHeight = (LocalConfiguration.current.screenHeightDp.dp-48.dp)/6 //48dp for the tabs subtracted from
-    var isExpanded by remember { mutableStateOf(false) }           // screen height (variable)/6 to get six events per screen
+    val boxHeight = 220.dp //48dp for the tabs subtracted from
+    var isExpanded by remember { mutableStateOf(false) }         // screen height (variable)/6 to get six events per screen
     Box(
         modifier = Modifier
             .height(boxHeight)
             .fillMaxWidth()
             .clickable { isExpanded = !isExpanded }
+            .padding(8.dp)
     ) {
         Text(
             text = events[slotNumber].title,
             color = Color(0xAFFFFFFF),
             fontFamily = TimesNewRoman,
-            fontSize = 18.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(8.dp)
-        )
-        Text(
-            text = events[slotNumber].shortDescription,
-            color = Color(0xAFFFFFFF),
-            fontFamily = TimesNewRoman,
-            fontSize = 18.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.align(Alignment.Center)
+            fontSize = 20.sp,
+            modifier = Modifier.align(Alignment.TopStart)
         )
         Text(
             text = events[slotNumber].date,
             color = Color(0xAFFFFFFF),
             fontFamily = TimesNewRoman,
-            fontSize = 18.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.align(Alignment.TopEnd).padding(8.dp)
+            fontSize = 20.sp,
+            modifier = Modifier.align(Alignment.TopEnd)
         )
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = events[slotNumber].imageRes),
+                contentDescription = null,
+                modifier = Modifier.height(boxHeight * 0.5f),
+                contentScale = ContentScale.Fit
+            )
+            Text(
+                text = events[slotNumber].shortDescription,
+                color = Color(0xAFFFFFFF),
+                fontFamily = TimesNewRoman,
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center
+            )
+        }
+
         DropdownMenu(
             expanded = isExpanded,
             onDismissRequest = {isExpanded = false},
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color(0xFF1A2C57))
-                .height(boxHeight)
         ) {
             Text(
                 text = events[slotNumber].longDescription,
@@ -215,6 +232,7 @@ fun EventTab(events: List<schoolEvent>, slotNumber: Int) {
                 fontFamily = TimesNewRoman,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center,
+                modifier = Modifier.padding(16.dp).fillMaxWidth()
             )
         }
     }
@@ -611,6 +629,26 @@ fun FameBanner() {
     ) {
         Text(
             text = "Fame & Achievements",
+            style = TextStyle(
+                fontFamily = TimesNewRoman,
+                fontSize = 18.sp,
+                color = Color(0xFF1A2C57)
+            )
+        )
+    }
+}
+
+@Composable
+fun EventBanner() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(30.dp)
+            .background(Color(0xFFFBE475)),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Events & Student Life",
             style = TextStyle(
                 fontFamily = TimesNewRoman,
                 fontSize = 18.sp,
