@@ -151,7 +151,7 @@ fun AcadScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun EventScreen(modifier: Modifier = Modifier) {
-    val eventsList = mutableListOf<schoolEvent>(testEvent1, testEvent2, testEvent3, testEvent4, testEvent5, testEvent6, testEvent7)
+    val eventsList = mutableListOf<schoolEvent>(testEvent1, testEvent2, testEvent3, testEvent4, testEvent5, testEvent6, testEvent7, testEvent8, testEvent9, testEvent10)
     Column(modifier = modifier.fillMaxSize()) {
         TopBanner()
         EventBanner()
@@ -170,6 +170,9 @@ fun EventScreen(modifier: Modifier = Modifier) {
                 EventTab(eventsList, 4)
                 EventTab(eventsList, 5)
                 EventTab(eventsList, 6)
+                EventTab(eventsList, 7)
+                EventTab(eventsList, 8)
+                EventTab(eventsList, 9)
             }
         }
     }
